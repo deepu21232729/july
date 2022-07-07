@@ -1,0 +1,17 @@
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        memory=collections.defaultdict(set)
+        memory[-1].add((-1, -1))
+        L1, L2, L3=len(s1), len(s2), len(s3)
+        if L3!=L1+L2: return False
+        s3_pos=0
+        while s3_pos<L3:
+            for s1_pos, s2_pos in memory[s3_pos-1]:
+                if s1_pos+1<L1 and s3[s3_pos]==s1[s1_pos+1]:
+                    memory[s3_pos].add((s1_pos+1, s2_pos))
+                if s2_pos+1<L2 and s3[s3_pos]==s2[s2_pos+1]:
+                    memory[s3_pos].add((s1_pos, s2_pos+1))
+            if not memory[s3_pos]: 
+                return False
+            s3_pos+=1
+        return (L1-1, L2-1) in memory[L3-1]
