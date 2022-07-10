@@ -1,0 +1,18 @@
+from typing import List
+class Solution:
+    def findAllPossiblePaths(self, n : int, m : int, grid : List[List[int]]) -> List[List[int]]:
+        # code here
+       result = []
+       rows = len(grid)
+       cols = len(grid[0])
+       def fp(row, col, temp):
+           if (row>= rows or col>= cols):
+               return
+           t = grid[row][col]
+           temp.append(t)
+           if (grid[row][col] == grid[rows - 1][cols-1]):
+               result.append(temp.copy())
+           fp(row+1, col, temp.copy())
+           fp(row, col+1, temp.copy())
+       fp(0, 0, [])
+       return result
