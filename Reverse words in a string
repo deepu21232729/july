@@ -1,0 +1,3 @@
+class Solution:
+    def reverseWords(self,S):
+        return '.'.join(reversed(s.split('.')))
