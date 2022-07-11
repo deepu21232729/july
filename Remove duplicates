@@ -1,0 +1,7 @@
+class Solution:
+	def removeDups(self, S):
+	    l = []
+        for i in range(len(S)):
+            if S[i] not in l:
+                l.append(S[i])
+        return ''.join(l)
