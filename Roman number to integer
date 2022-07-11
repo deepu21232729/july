@@ -1,0 +1,16 @@
+class Solution:
+    def romanToDecimal(self, s): 
+        rnum={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}    
+        res=0
+        n=len(s)-1
+        while n>=0:
+            if rnum[s[n]]<=rnum[s[n-1]] or n==0:
+                res+=rnum[s[n]]
+            else:
+                res+=(rnum[s[n]]-rnum[s[n-1]])
+                n-=1
+            n-=1
+        if res<0:
+            res*=-1
+        return res
+        
