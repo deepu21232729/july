@@ -1,0 +1,31 @@
+class Solution:
+    def makesquare(self, matchsticks: List[int]) -> bool:
+        all_sum = sum(matchsticks)
+        if all_sum % 4 != 0:
+            return False
+        side_size = all_sum // 4
+        n = len(matchsticks)
+        sides = [0] * 4
+        sm = sorted(matchsticks, reverse=True)
+        memo = set()
+        def put(i, j):  
+            if i == n:
+                return True
+            ssides = sorted(sides)
+            if (i, ssides[0], ssides[1], ssides[2], ssides[3]) in memo:
+               
+                return False
+		
+            for k in range(4):
+                if sides[(j+k) % 4] + sm[i] <= side_size:
+                    sides[(j+k) % 4] += sm[i]
+				
+                    if put(i+1, (j+k+1) % 4):
+                        return True
+					
+                    sides[(j+k) % 4] -= sm[i]
+           
+            memo.add((i, ssides[0], ssides[1], ssides[2], ssides[3]))
+            return False
+        return put(0,0)
+                    
