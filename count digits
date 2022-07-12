@@ -1,0 +1,7 @@
+n=int(input())
+l=list(map(int,input().split()))
+for i in l:
+    i=str(i)
+    if '-' in i:
+        i=i.replace('-','')
+    print(len(i),end=' ')
