@@ -1,0 +1,25 @@
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        visited = set()
+        moves = ((-1,0),(1,0),(0,-1),(0,1))
+        area = 0
+        for i,row in enumerate(grid):
+            for j,item in enumerate(row):
+                stack = [(i,j)]
+                curr_area = 0
+                while stack:
+                    r,c = stack.pop()
+                    if (r < 0 or r >= len(grid) or
+                        c < 0 or c >= len(grid[0]) or
+                        not grid[r][c] or
+                        (r,c) in visited):
+                        
+                        continue
+                    visited.add((r,c))
+                    curr_area+=1
+                    for move in moves:
+                        row = r+move[0]
+                        col = c+move[1]
+                        stack.append((row,col))
+                area = max(area,curr_area)     
+        return area
