@@ -1,0 +1,9 @@
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        l = len(s)
+        self.res = []
+        
+        def palindrome(pali: str):
+            for i in range(len(pali) // 2):
+                if pali[i] != pali [-i - 1]:
+                    return False
