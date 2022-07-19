@@ -1,0 +1,8 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        pascal_tri = [[1 for _ in range(row + 1)] for row in range(numRows)]
+        for row in range(numRows):
+            for col in range(1, row):
+                pascal_tri[row][col] = pascal_tri[row - 1][col] + pascal_tri[row - 1][col - 1]
+        
+        return pascal_tri
