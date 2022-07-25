@@ -1,0 +1,20 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        length_s = len(s)
+        length_t = len(t)      
+        if ( length_s != length_t ):
+            return False    
+        word_replace = {}        
+        for i in range(length_s):
+            element_s = s[i]
+            element_t = t[i]            
+            if ( element_s not in word_replace ):
+                if ( element_t in word_replace.values() ):
+                    return False
+                word_replace[element_s] = element_t
+            else:
+                if ( word_replace[element_s] != element_t ):
+                    return False
+                
+        return True
+        
