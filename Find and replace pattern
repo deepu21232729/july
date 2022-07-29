@@ -1,0 +1,16 @@
+class Solution:
+    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
+        def check(word,pattern):
+            if len(word) != len(pattern): return False
+            d={}
+            e=set()
+            
+            for i in range(len(word)):
+                if (word[i] in d and pattern[i] != d[word[i]]) or (word[i] not in d and pattern[i] in e):
+                        return False
+                d[word[i]] = pattern[i]
+                e.add(pattern[i])
+            return True
+    
+        
+        return [word for word in words if check(word,pattern)]
